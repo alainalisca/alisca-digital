@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --charcoal: #2d3436;
+  --charcoal-deep: #1e2426;
+  --teal: #0d9488;
+  --teal-dark: #0f766e;
+  --teal-light: #5eead4;
+  --warm-white: #fafaf9;
+  --cream: #f5f5f4;
+  --stone: #78716c;
+  --stone-light: #a8a29e;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --border: #e7e5e4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--warm-white);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs uppercase tracking-[0.2em] font-semibold mb-4;
+    color: var(--teal);
+  }
+  .section-title {
+    @apply text-4xl md:text-5xl leading-tight;
+    color: var(--charcoal);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-3 px-8 py-4 text-sm font-medium uppercase tracking-wider transition-all duration-300;
+    background: var(--teal);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateX(5px);
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-3 px-6 py-3 text-sm font-medium uppercase tracking-wider transition-all duration-300;
+    background: var(--charcoal);
+    color: white;
+  }
+  .btn-secondary:hover {
+    background: var(--teal);
+  }
+}
