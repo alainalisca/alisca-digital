@@ -1,10 +1,8 @@
-import Image from 'next/image'
-
 const projects = [
-  { title: 'Tribe', type: 'Web Application / PWA', description: 'Peer-to-peer fitness app connecting athletes for training sessions. Real-time matching, in-app chat, bilingual support, session management.', tech: ['Next.js 15', 'TypeScript', 'Supabase', 'PWA'], image: '/images/tribe.v3.jpg' },
-  { title: 'Alisca Law', type: 'Professional Website', description: 'Virtual law firm website for contract and transactional legal services. Clean, authoritative design with clear service positioning.', tech: ['Next.js', 'Responsive', 'SEO Optimized'], image: '/images/aliscalaw.jpg' },
-  { title: 'La Profe Vero', type: 'Business Website', description: 'Spanish tutoring business site with booking integration, pricing tiers, and warm Colombian branding for international students.', tech: ['HTML/CSS/JS', 'Booking Integration', 'Bilingual'], image: '/images/laprofevero.jpg' },
-  { title: 'Jay Essentials', type: 'Business Website', description: 'Vending machine business serving NYC and Long Island. Professional multi-page site showcasing services and service areas.', tech: ['Next.js', 'Vercel', 'Custom Domain'], image: '/images/jayessentials.jpg' },
+  { title: 'Tribe', type: 'Web Application / PWA', description: 'Peer-to-peer fitness app connecting athletes for training sessions. Real-time matching, in-app chat, bilingual support, session management.', tech: ['Next.js 15', 'TypeScript', 'Supabase', 'PWA'], image: '/images/tribe.v3.jpg', url: 'https://tribe-v3.vercel.app' },
+  { title: 'Alisca Law', type: 'Professional Website', description: 'Virtual law firm website for contract and transactional legal services. Clean, authoritative design with clear service positioning.', tech: ['Next.js', 'Responsive', 'SEO Optimized'], image: '/images/aliscalaw.jpg', url: 'https://aliscalaw.com' },
+  { title: 'La Profe Vero', type: 'Business Website', description: 'Spanish tutoring business site with booking integration, pricing tiers, and warm Colombian branding for international students.', tech: ['HTML/CSS/JS', 'Booking Integration', 'Bilingual'], image: '/images/laprofevero.jpg', url: 'https://laprofevero.com' },
+  { title: 'Jay Essentials', type: 'Business Website', description: 'Vending machine business serving NYC and Long Island. Professional multi-page site showcasing services and service areas.', tech: ['Next.js', 'Vercel', 'Custom Domain'], image: '/images/jayessentials.jpg', url: 'https://jayessentials.co' },
 ]
 
 export default function Portfolio() {
@@ -17,7 +15,7 @@ export default function Portfolio() {
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <div key={project.title} className="group bg-[var(--charcoal-deep)] border border-white/10 overflow-hidden transition-all duration-300 hover:border-[var(--teal)] hover:-translate-y-1">
+            <a href={project.url} target="_blank" rel="noopener noreferrer" key={project.title} className="group bg-[var(--charcoal-deep)] border border-white/10 overflow-hidden transition-all duration-300 hover:border-[var(--teal)] hover:-translate-y-1 block cursor-pointer">
               <div className="aspect-video relative overflow-hidden">
                 <img
                   src={project.image}
@@ -35,7 +33,7 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
