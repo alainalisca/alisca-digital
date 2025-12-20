@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center pt-32 pb-16 px-6 lg:px-16 relative overflow-hidden">
@@ -32,8 +34,14 @@ export default function Hero() {
         <div className="relative hidden lg:block">
           <div className="relative max-w-md ml-auto">
             <div className="absolute -top-5 -left-5 right-5 bottom-5 border-2 border-[var(--teal)]" />
-            <div className="relative aspect-[4/5] bg-gradient-to-br from-[var(--charcoal)] to-[var(--charcoal-deep)] flex items-center justify-center">
-              <span className="text-[var(--stone-light)] text-sm uppercase tracking-widest">Your Headshot</span>
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="/images/headshot.jpeg"
+                alt="Alain Alisca"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
         </div>

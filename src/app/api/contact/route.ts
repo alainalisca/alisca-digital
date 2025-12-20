@@ -18,14 +18,14 @@ export async function POST(request: NextRequest) {
     }
 
     await resend.emails.send({
-      from: 'Alisca Digital <noreply@aliscadigital.com>',
-      to: ['hello@aliscadigital.com'],
+      from: 'Alisca Digital <alainalisca@aplusfitnessllc.com>',
+      to: ['alainalisca@aplusfitnessllc.com'],
       subject: `New Project Inquiry from ${name}`,
       html: `<h2>New Project Inquiry</h2><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Project Type:</strong> ${projectType || 'Not specified'}</p><p><strong>Message:</strong></p><p>${message || 'No message provided'}</p>`,
     })
 
     await resend.emails.send({
-      from: 'Alisca Digital <noreply@aliscadigital.com>',
+      from: 'Alisca Digital <alainalisca@aplusfitnessllc.com>',
       to: [email],
       subject: 'Thanks for reaching out - Alisca Digital',
       html: `<h2>Thanks for your inquiry, ${name}!</h2><p>I've received your message and will get back to you within 24 hours.</p><p>Best,</p><p>Alain Alisca<br>Alisca Digital</p>`,
