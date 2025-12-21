@@ -44,7 +44,7 @@ export default function Contact() {
             </div>
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Location</span>
-              <span className="text-white">New York & Medellín</span>
+              <span className="text-white">Serving clients worldwide</span>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Response</span>
