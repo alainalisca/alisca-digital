@@ -40,7 +40,7 @@ export default function Contact() {
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Email</span>
-              <a href="mailto:hello@aliscadigital.com" className="text-[var(--teal-light)] hover:text-white transition-colors">hello@aliscadigital.com</a>
+              <a href="mailto:alainalisca@aplusfitnessllc.com" className="text-[var(--teal-light)] hover:text-white transition-colors">alainalisca@aplusfitnessllc.com</a>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Location</span>

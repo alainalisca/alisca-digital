@@ -1,6 +1,6 @@
 const credentials = [
   { year: '2025', title: 'Software Engineering Certificate', school: 'Stony Brook University', detail: 'Full-stack web development, modern frameworks, database design' },
-  { year: '2020', title: 'Juris Doctor (JD)', school: "St. John's University School of Law", detail: 'NY Bar Admitted • Contract & Transactional Law' },
+  { year: '2019', title: 'Juris Doctor (JD)', school: "St. John's University School of Law", detail: 'NY Bar Admitted 2020 • Contract & Transactional Law' },
   { year: 'Undergraduate', title: 'Dual Degree', school: 'Stony Brook University', detail: 'Technological Systems Management & Sociology' },
 ]
 

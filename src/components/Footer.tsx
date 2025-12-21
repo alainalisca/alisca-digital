@@ -9,7 +9,7 @@ export default function Footer() {
         </Link>
         <p className="text-[var(--stone)] text-sm">© {new Date().getFullYear()} Alisca Digital. All rights reserved.</p>
         <div className="flex gap-8">
-          <a href="https://linkedin.com/in/alainalisca" target="_blank" rel="noopener noreferrer" className="text-[var(--stone-light)] text-sm hover:text-[var(--teal-light)] transition-colors">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/alainaliscaesq/" target="_blank" rel="noopener noreferrer" className="text-[var(--stone-light)] text-sm hover:text-[var(--teal-light)] transition-colors">LinkedIn</a>
           <a href="https://github.com/alainalisca" target="_blank" rel="noopener noreferrer" className="text-[var(--stone-light)] text-sm hover:text-[var(--teal-light)] transition-colors">GitHub</a>
           <a href="https://aliscalaw.com" target="_blank" rel="noopener noreferrer" className="text-[var(--stone-light)] text-sm hover:text-[var(--teal-light)] transition-colors">Alisca Law</a>
         </div>
