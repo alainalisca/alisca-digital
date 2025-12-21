@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     await resend.emails.send({
       from: 'Alisca Digital <alainalisca@aplusfitnessllc.com>',
-      to: ['alainalisca@aplusfitnessllc.com'],
+      to: ['darianraphael67@gmail.com'],
       subject: `New Project Inquiry from ${name}`,
       html: `<h2>New Project Inquiry</h2><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Project Type:</strong> ${projectType || 'Not specified'}</p><p><strong>Message:</strong></p><p>${message || 'No message provided'}</p>`,
     })
