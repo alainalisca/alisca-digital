@@ -1,8 +1,7 @@
 const pricingData = [
-  { service: 'Business Website', description: 'Marketing sites, landing pages, portfolios (5-10 pages)', price: '$1,500 – $3,000' },
-  { service: 'Web Application', description: 'Custom apps with database, authentication, business logic', price: '$3,500 – $8,000+' },
-  { service: 'Progressive Web App', description: 'Full PWA with offline support, push notifications, installable', price: '$4,000 – $10,000+' },
-  { service: 'Hourly Consulting', description: 'Code review, technical advisory, small tasks, troubleshooting', price: '$75/hour' },
+  { service: 'Business Website', description: 'Marketing sites, landing pages, portfolios (5-10 pages)', price: '$500 – $1,500' },
+  { service: 'Web Application', description: 'Custom apps with database, authentication, business logic, PWA features', price: '$4,000 – $10,000+' },
+  { service: 'Hourly Consulting', description: 'Code review, technical advisory, small tasks, troubleshooting', price: '$50/hour' },
   { service: 'Maintenance Retainer', description: 'Monthly updates, hosting management, priority support', price: '$200 – $500/month' },
 ]
 
@@ -36,7 +35,7 @@ export default function Pricing() {
         </div>
         <div className="mt-8 p-6 bg-[var(--cream)] border-l-4 border-[var(--teal)]">
           <p className="text-[var(--text-secondary)]">
-            <strong className="text-[var(--text-primary)]">How it works:</strong> Every project starts with a free consultation to understand your needs. I&apos;ll provide a detailed scope and fixed quote before any work begins. No surprises, no scope creep billing. Payment plans available for larger projects.
+            <strong className="text-[var(--text-primary)]">How it works:</strong> Every project starts with a free consultation to understand your needs. Final pricing depends on project scope and complexity — I&apos;ll provide a detailed quote before any work begins. No surprises.
           </p>
         </div>
       </div>
