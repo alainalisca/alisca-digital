@@ -3,31 +3,30 @@
 import { useState } from 'react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', projectType: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
+    
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://formspree.io/f/xpqwvweb', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: formData,
+        headers: { 'Accept': 'application/json' },
       })
       if (response.ok) {
         setStatus('success')
-        setFormData({ name: '', email: '', projectType: '', message: '' })
+        form.reset()
       } else {
         setStatus('error')
       }
     } catch {
       setStatus('error')
     }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   return (
@@ -56,16 +55,16 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Name</label>
-              <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Your name" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
+              <input type="text" id="name" name="name" required placeholder="Your name" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
             </div>
             <div>
               <label htmlFor="email" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Email</label>
-              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="your@email.com" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
+              <input type="email" id="email" name="email" required placeholder="your@email.com" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
             </div>
           </div>
           <div>
             <label htmlFor="projectType" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Project Type</label>
-            <select id="projectType" name="projectType" value={formData.projectType} onChange={handleChange} className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white focus:border-[var(--teal)] focus:outline-none transition-colors">
+            <select id="projectType" name="projectType" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white focus:border-[var(--teal)] focus:outline-none transition-colors">
               <option value="">Select a service...</option>
               <option value="website">Business Website</option>
               <option value="webapp">Web Application</option>
@@ -76,10 +75,10 @@ export default function Contact() {
           </div>
           <div>
             <label htmlFor="message" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Project Details</label>
-            <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={6} placeholder="Tell me about your project, timeline, and budget..." className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors resize-none" />
+            <textarea id="message" name="message" rows={6} placeholder="Tell me about your project, timeline, and budget..." className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors resize-none" />
           </div>
           <button type="submit" disabled={status === 'loading'} className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed">
-            {status === 'loading' ? 'Sending...' : 'Send Message'}
+            {status === 'loading' ? 'Sending...' : 'SEND MESSAGE'}
           </button>
           {status === 'success' && <p className="text-[var(--teal-light)] text-center">Message sent! I&apos;ll get back to you within 24 hours.</p>}
           {status === 'error' && <p className="text-red-400 text-center">Something went wrong. Please try again or email directly.</p>}
