@@ -7,10 +7,10 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
         <div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl text-[var(--charcoal)] mb-6 font-serif">
-            Software that <span className="text-[var(--teal)] italic">works</span> for your business
+            We build websites that <span className="text-[var(--teal)] italic">convert</span>
           </h1>
           <p className="text-xl text-[var(--text-secondary)] mb-8 max-w-xl font-light">
-            Custom websites and web applications built with precision, designed for longevity, and delivered by an engineer who understands both code and contracts.
+            Custom-coded websites and web applications. No templates. No page builders. Every project includes a work-for-hire agreement — you own everything.
           </p>
           <div className="flex flex-wrap gap-8 mb-10 pt-6 border-t border-[var(--border)]">
             <div>

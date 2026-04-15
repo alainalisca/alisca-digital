@@ -18,6 +18,7 @@ export default function Navbar() {
     { href: '#services', label: 'Services' },
     { href: '#portfolio', label: 'Work' },
     { href: '#pricing', label: 'Pricing' },
+    { href: '#referrals', label: 'Referrals' },
     { href: '#contact', label: 'Contact' },
   ]
 
@@ -25,7 +26,7 @@ export default function Navbar() {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'py-4 bg-[var(--warm-white)]/95 backdrop-blur-md border-b border-[var(--border)]' : 'py-6 bg-[var(--warm-white)]'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex justify-between items-center">
         <Link href="/" className="font-serif text-2xl font-semibold text-[var(--charcoal)] tracking-wide">
-          Alisca<span className="text-[var(--teal)]">Digital</span>
+          Vencer
         </Link>
         <ul className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (

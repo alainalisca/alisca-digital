@@ -42,6 +42,10 @@ export default function Contact() {
               <a href="mailto:alainalisca@aplusfitnessllc.com" className="text-[var(--teal-light)] hover:text-white transition-colors">alainalisca@aplusfitnessllc.com</a>
             </div>
             <div className="flex items-center gap-4">
+              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Phone</span>
+              <a href="tel:+13472132947" className="text-[var(--teal-light)] hover:text-white transition-colors">(347) 213-2947</a>
+            </div>
+            <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Location</span>
               <span className="text-white">Serving clients worldwide</span>
             </div>
