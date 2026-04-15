@@ -13,7 +13,7 @@ export default function Contact() {
     const formData = new FormData(form)
     
     try {
-      const response = await fetch('https://formspree.io/f/xpqwvweb', {
+      const response = await fetch('https://formspree.io/f/maqaqejd', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' },
@@ -40,6 +40,10 @@ export default function Contact() {
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Email</span>
               <a href="mailto:alainalisca@aplusfitnessllc.com" className="text-[var(--teal-light)] hover:text-white transition-colors">alainalisca@aplusfitnessllc.com</a>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Phone</span>
+              <a href="tel:+13472132947" className="text-[var(--teal-light)] hover:text-white transition-colors">(347) 213-2947</a>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Location</span>
