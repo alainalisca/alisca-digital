@@ -68,7 +68,7 @@ export default function Referrals() {
           </div>
         ) : (
           <form
-            action="https://formspree.io/f/xpqwvweb"
+            action="https://formspree.io/f/maqaqejd"
             method="POST"
             onSubmit={(e) => {
               e.preventDefault()
