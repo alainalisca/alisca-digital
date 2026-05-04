@@ -1,30 +1,37 @@
-const skillCategories = [
-  { title: 'Frontend', skills: ['React / Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS / JS', 'Responsive Design'] },
-  { title: 'Backend', skills: ['Node.js', 'Supabase', 'PostgreSQL', 'REST APIs', 'Server-Side Rendering'] },
-  { title: 'Integrations', skills: ['Stripe Payments', 'Authentication Systems', 'Email (Resend, SendGrid)', 'Scheduling Tools', 'Third-Party APIs'] },
-  { title: 'Deployment', skills: ['Vercel', 'Git / GitHub', 'Domain Configuration', 'SSL / Security', 'PWA Distribution'] },
+import Reveal from './Reveal'
+
+const TOOLS = [
+  { name: 'Next.js 14', cat: 'Framework' },
+  { name: 'TypeScript', cat: 'Language' },
+  { name: 'Tailwind CSS', cat: 'Styling' },
+  { name: 'React', cat: 'UI' },
+  { name: 'Supabase', cat: 'Backend' },
+  { name: 'PostgreSQL', cat: 'Database' },
+  { name: 'Stripe', cat: 'Payments · Intl.' },
+  { name: 'Nequi', cat: 'Payments · CO' },
+  { name: 'next-intl', cat: 'i18n' },
+  { name: 'Vercel', cat: 'Hosting' },
+  { name: 'Resend', cat: 'Transactional Email' },
+  { name: 'GitHub', cat: 'Source / CI' },
 ]
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 lg:px-16 bg-[var(--warm-white)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="section-label">Technical Skills</span>
-          <h2 className="section-title">The toolkit</h2>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category) => (
-            <div key={category.title}>
-              <h4 className="text-sm uppercase tracking-widest text-[var(--charcoal)] font-semibold mb-4 pb-3 border-b-2 border-[var(--teal)]">{category.title}</h4>
-              <ul>
-                {category.skills.map((skill) => (
-                  <li key={skill} className="py-3 text-[var(--text-secondary)] border-b border-[var(--border)] last:border-b-0">{skill}</li>
-                ))}
-              </ul>
+    <section className="toolkit-section section-vc">
+      <div className="container-vc">
+        <Reveal className="section-head">
+          <span className="eyebrow">The Toolkit</span>
+          <h2>Modern, boring, battle-tested.</h2>
+          <p className="lead">Every line of code on this list is one I&apos;ve shipped to a paying client at least once. No experiments at your expense.</p>
+        </Reveal>
+        <Reveal stagger as="div" className="toolkit-grid">
+          {TOOLS.map((t) => (
+            <div key={t.name} className="tool">
+              <span className="tool-name">{t.name}</span>
+              <span className="tool-cat">{t.cat}</span>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

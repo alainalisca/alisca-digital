@@ -1,27 +1,29 @@
-const credentials = [
-  { year: '2025', title: 'Software Engineering Certificate', school: 'Stony Brook University', detail: 'Full-stack web development, modern frameworks, database design' },
-  { year: '2019', title: 'Juris Doctor (JD)', school: "St. John's University School of Law", detail: 'NY Bar Admitted 2020 • Contract & Transactional Law' },
-  { year: 'Undergraduate', title: 'Dual Degree', school: 'Stony Brook University', detail: 'Technological Systems Management & Sociology' },
+import Reveal from './Reveal'
+
+const CRED = [
+  { title: 'Software Engineering Certificate', body: 'Stony Brook University' },
+  { title: 'Juris Doctor (JD)', body: "St. John's University School of Law · Admitted to NY Bar" },
+  { title: 'Bilingual: English & Spanish', body: 'Comfortable in client-facing and contract-facing contexts in both languages' },
+  { title: 'Online studio · Available globally', body: 'Fully virtual practice — every engagement runs over email, video, and shared docs' },
 ]
 
 export default function Education() {
   return (
-    <section id="education" className="bg-[var(--cream)] py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="section-label">Education</span>
-          <h2 className="section-title">Credentials</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {credentials.map((cred) => (
-            <div key={cred.title} className="p-8 bg-[var(--warm-white)] border border-[var(--border)]">
-              <span className="text-xs uppercase tracking-widest text-[var(--teal)] font-semibold mb-3 block">{cred.year}</span>
-              <h3 className="font-serif text-2xl text-[var(--charcoal)] mb-2">{cred.title}</h3>
-              <p className="text-[var(--text-secondary)] mb-4">{cred.school}</p>
-              <p className="text-sm text-[var(--stone)] italic">{cred.detail}</p>
+    <section className="cred-section section-vc">
+      <div className="container-vc">
+        <Reveal className="section-head">
+          <span className="eyebrow">Credentials</span>
+          <h2>Two degrees, one rare combination.</h2>
+          <p className="lead">The training that informs the work.</p>
+        </Reveal>
+        <Reveal stagger as="div" className="cred-list" style={{ maxWidth: 760 }}>
+          {CRED.map((c) => (
+            <div key={c.title} className="cred-item">
+              <h4>{c.title}</h4>
+              <p>{c.body}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

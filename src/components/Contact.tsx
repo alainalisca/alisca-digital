@@ -1,22 +1,27 @@
 'use client'
 
 import { useState } from 'react'
+import Reveal from './Reveal'
 
-export default function Contact() {
+type Variant = 'home-teaser' | 'full'
+
+type Props = {
+  variant?: Variant
+}
+
+export default function Contact({ variant = 'home-teaser' }: Props) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
-    
     const form = e.currentTarget
     const formData = new FormData(form)
-    
     try {
       const response = await fetch('https://formspree.io/f/maqaqejd', {
         method: 'POST',
         body: formData,
-        headers: { 'Accept': 'application/json' },
+        headers: { Accept: 'application/json' },
       })
       if (response.ok) {
         setStatus('success')
@@ -30,63 +35,98 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-[var(--charcoal)] py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-        <div>
-          <span className="text-xs uppercase tracking-[0.2em] font-semibold mb-4 block text-[var(--teal-light)]">Contact</span>
-          <h2 className="text-4xl md:text-5xl text-white leading-tight font-serif mb-6">Let&apos;s build something</h2>
-          <p className="text-lg text-[var(--stone-light)] mb-10">Have a project in mind? I&apos;d love to hear about it. Reach out for a free consultation and let&apos;s discuss how we can work together.</p>
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Email</span>
-              <a href="mailto:alainalisca@aplusfitnessllc.com" className="text-[var(--teal-light)] hover:text-white transition-colors">alainalisca@aplusfitnessllc.com</a>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Phone</span>
-              <a href="tel:+13472132947" className="text-[var(--teal-light)] hover:text-white transition-colors">(347) 213-2947</a>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Location</span>
-              <span className="text-white">Serving clients worldwide</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--stone-light)] w-20">Response</span>
-              <span className="text-white">Within 24 hours</span>
-            </div>
-          </div>
+    <section className="contact-section-vc">
+      <div className="container-vc">
+        <div className="contact-grid">
+          <Reveal className="contact-info">
+            <span className="eyebrow">{variant === 'full' ? 'Direct contact' : "Let's build"}</span>
+            <h2 style={{ marginTop: 14 }}>
+              {variant === 'full' ? 'Or skip the form.' : "Tell me what you're working on."}
+            </h2>
+            <p style={{ marginTop: 22 }}>
+              {variant === 'full'
+                ? 'Email or phone work just as well. Most projects start with a 30-minute conversation.'
+                : "Whether it's a one-page launch, a full web application, or a redesign you've been putting off — start with a few sentences. I respond within one business day."}
+            </p>
+
+            <ul>
+              <li><span className="key">Email</span><span className="val">alain@vencer.dev</span></li>
+              <li><span className="key">Phone</span><span className="val">(347) 213-2947</span></li>
+              <li><span className="key">Hours</span><span className="val">Mon–Fri, business hours</span></li>
+              <li><span className="key">Locale</span><span className="val">EN&nbsp;/&nbsp;ES</span></li>
+              {variant === 'full' && (
+                <>
+                  <li><span className="key">Response</span><span className="val">Within 1 business day</span></li>
+                  <li><span className="key">Free Call</span><span className="val">First 30 min, no obligation</span></li>
+                </>
+              )}
+            </ul>
+          </Reveal>
+
+          <Reveal>
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="field">
+                <label htmlFor="c-name">Your Name</label>
+                <input id="c-name" name="name" type="text" required />
+              </div>
+              <div className="field">
+                <label htmlFor="c-email">Your Email</label>
+                <input id="c-email" name="email" type="email" required />
+              </div>
+              {variant === 'full' && (
+                <>
+                  <div className="field">
+                    <label htmlFor="c-phone">Your Phone (optional)</label>
+                    <input id="c-phone" name="phone" type="tel" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="c-tier">What kind of project?</label>
+                    <select id="c-tier" name="projectType" defaultValue="not-sure">
+                      <option value="business-website">Business Website ($500–$1,500)</option>
+                      <option value="web-app">Web Application ($2,500–$10,000+)</option>
+                      <option value="pwa">Progressive Web App</option>
+                      <option value="integration">Integration or Automation</option>
+                      <option value="bilingual">Bilingual Site (EN/ES)</option>
+                      <option value="retainer">Maintenance Retainer</option>
+                      <option value="not-sure">Not sure yet</option>
+                    </select>
+                  </div>
+                </>
+              )}
+              <div className="field">
+                <label htmlFor="c-project">{variant === 'full' ? 'Tell me about it' : 'What are you building?'}</label>
+                <textarea
+                  id="c-project"
+                  name="message"
+                  required
+                  placeholder={
+                    variant === 'full'
+                      ? 'A few sentences about what you\'re building, who it\'s for, and what success looks like.'
+                      : 'A few sentences is plenty.'
+                  }
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="btn-vc btn-vc-teal"
+                style={{ opacity: status === 'loading' ? 0.5 : 1 }}
+              >
+                {status === 'loading' ? 'Sending…' : 'Send'} <span className="arrow">→</span>
+              </button>
+              {status === 'success' && (
+                <p style={{ color: 'var(--teal-light)', textAlign: 'center', marginTop: 18 }}>
+                  Message sent. I&apos;ll get back to you within one business day.
+                </p>
+              )}
+              {status === 'error' && (
+                <p style={{ color: '#fda4af', textAlign: 'center', marginTop: 18 }}>
+                  Something went wrong. Please try again or email alain@vencer.dev directly.
+                </p>
+              )}
+            </form>
+          </Reveal>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="name" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Name</label>
-              <input type="text" id="name" name="name" required placeholder="Your name" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Email</label>
-              <input type="email" id="email" name="email" required placeholder="your@email.com" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors" />
-            </div>
-          </div>
-          <div>
-            <label htmlFor="projectType" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Project Type</label>
-            <select id="projectType" name="projectType" className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white focus:border-[var(--teal)] focus:outline-none transition-colors">
-              <option value="">Select a service...</option>
-              <option value="website">Business Website</option>
-              <option value="webapp">Web Application</option>
-              <option value="pwa">Progressive Web App</option>
-              <option value="consulting">Hourly Consulting</option>
-              <option value="other">Something Else</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-xs uppercase tracking-widest text-[var(--stone-light)] mb-2">Project Details</label>
-            <textarea id="message" name="message" rows={6} placeholder="Tell me about your project, timeline, and budget..." className="w-full px-4 py-4 bg-[var(--charcoal-deep)] border border-white/10 text-white placeholder-[var(--stone)] focus:border-[var(--teal)] focus:outline-none transition-colors resize-none" />
-          </div>
-          <button type="submit" disabled={status === 'loading'} className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed">
-            {status === 'loading' ? 'Sending...' : 'SEND MESSAGE'}
-          </button>
-          {status === 'success' && <p className="text-[var(--teal-light)] text-center">Message sent! I&apos;ll get back to you within 24 hours.</p>}
-          {status === 'error' && <p className="text-red-400 text-center">Something went wrong. Please try again or email directly.</p>}
-        </form>
       </div>
     </section>
   )

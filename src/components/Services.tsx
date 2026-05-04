@@ -1,31 +1,102 @@
-const services = [
-  { icon: '🌐', title: 'Business Websites', description: 'Professional marketing sites, landing pages, and portfolios. Clean design, fast performance, built to convert visitors into clients.', price: 'Starting at $1,500' },
-  { icon: '⚡', title: 'Web Applications', description: 'Custom applications with user accounts, databases, and business logic. From booking systems to client portals to internal tools.', price: 'Starting at $3,500' },
-  { icon: '📱', title: 'Progressive Web Apps', description: 'App-like experiences that work on any device without app store approval. Offline capability, push notifications, home screen installation.', price: 'Starting at $4,000' },
-  { icon: '🔗', title: 'Integrations', description: 'Connect your tools. Stripe payments, scheduling systems, CRMs, email marketing, and third-party APIs wired into your workflow.', price: 'Starting at $500' },
-  { icon: '🌍', title: 'Bilingual Sites', description: 'English and Spanish localization built in from the start. Reach broader markets with professional translations and cultural adaptation.', price: '+$500 to any project' },
-  { icon: '🛠️', title: 'Ongoing Support', description: 'Monthly retainers for updates, maintenance, hosting management, and priority support. Keep your digital presence running smoothly.', price: '$200 – $500/month' },
+import Link from 'next/link'
+import Reveal from './Reveal'
+
+export const SERVICES = [
+  {
+    img: 1,
+    num: '01 / Marketing',
+    title: 'Business Websites',
+    desc: 'Professional marketing sites, landing pages, and portfolios. Clean design, fast performance, built to convert.',
+    price: 'From $500',
+    slug: 'business-websites',
+  },
+  {
+    img: 2,
+    num: '02 / Software',
+    title: 'Web Applications',
+    desc: 'Custom apps with user accounts, databases, and business logic. Booking systems to client portals to internal tools.',
+    price: 'From $2,500',
+    slug: 'web-applications',
+  },
+  {
+    img: 3,
+    num: '03 / Mobile',
+    title: 'Progressive Web Apps',
+    desc: 'App-like experiences on any device, no app-store approval. Offline capability, push notifications, install.',
+    price: 'Scoped per project',
+    slug: 'progressive-web-apps',
+  },
+  {
+    img: 4,
+    num: '04 / Plumbing',
+    title: 'Integrations',
+    desc: 'Connect your tools — Stripe, scheduling, CRMs, email marketing, third-party APIs — wired into your workflow.',
+    price: 'Hourly or fixed',
+    slug: 'integrations',
+  },
+  {
+    img: 5,
+    num: '05 / Reach',
+    title: 'Bilingual Sites',
+    desc: 'English and Spanish localization built in from day one. Reach broader markets with professional translations.',
+    price: '+$500 add-on',
+    slug: 'bilingual-sites',
+  },
+  {
+    img: 6,
+    num: '06 / Aftercare',
+    title: 'Ongoing Support',
+    desc: 'Monthly retainers for updates, maintenance, hosting management, and priority support. Sharp and current.',
+    price: '$200–$500 / mo',
+    slug: 'ongoing-support',
+  },
 ]
 
-export default function Services() {
+type Props = {
+  variant?: 'home-preview' | 'jump-grid'
+}
+
+export default function Services({ variant = 'home-preview' }: Props) {
+  if (variant === 'jump-grid') {
+    return (
+      <Reveal stagger as="div" className="services-grid">
+        {SERVICES.map((s) => (
+          <Link key={s.slug} className="service" data-img={s.img} href={`/services#${s.slug}`}>
+            <div className="service-num">{s.num}</div>
+            <h3>{s.title}</h3>
+            <p className="service-desc">{s.desc}</p>
+            <span className="service-price">{s.price}</span>
+          </Link>
+        ))}
+      </Reveal>
+    )
+  }
+
   return (
-    <section id="services" className="py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="section-label">Services</span>
-          <h2 className="section-title">What I build</h2>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div key={service.title} className="group p-8 bg-[var(--warm-white)] border border-[var(--border)] transition-all duration-300 hover:border-[var(--teal)] hover:-translate-y-1 hover:shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-0 h-[3px] bg-[var(--teal)] transition-all duration-300 group-hover:w-full" />
-              <div className="w-12 h-12 bg-[var(--cream)] rounded-full flex items-center justify-center text-2xl mb-6">{service.icon}</div>
-              <h3 className="font-serif text-2xl text-[var(--charcoal)] mb-3">{service.title}</h3>
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">{service.description}</p>
-              <div className="font-serif text-xl font-semibold text-[var(--teal)]">{service.price}</div>
-            </div>
+    <section className="services-section section-vc">
+      <div className="container-vc">
+        <Reveal className="section-head">
+          <span className="eyebrow">What I build</span>
+          <h2>Six things, done with full ownership and zero shortcuts.</h2>
+          <p className="lead">
+            Each project is scoped, quoted, and delivered as custom code.{' '}
+            <Link href="/services" style={{ color: 'var(--teal)', textDecoration: 'underline', textUnderlineOffset: 4 }}>
+              See what&apos;s included →
+            </Link>
+          </p>
+        </Reveal>
+
+        <Reveal stagger as="div" className="services-grid">
+          {SERVICES.map((s) => (
+            <Link key={s.slug} className="service" data-img={s.img} href={`/services#${s.slug}`}>
+              <div className="service-num">{s.num}</div>
+              <h3>{s.title}</h3>
+              <p className="service-desc">{s.desc}</p>
+              <span className="service-price">{s.price}</span>
+              <span className="service-more">Read more <span className="arrow">→</span></span>
+            </Link>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

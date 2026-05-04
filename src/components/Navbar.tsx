@@ -2,61 +2,90 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+const NAV_LINKS = [
+  { href: '/services', label: 'Services' },
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/referrals', label: 'Referrals' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#portfolio', label: 'Work' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#referrals', label: 'Referrals' },
-    { href: '#contact', label: 'Contact' },
-  ]
+  // Inner pages: nav is always solid (since they don't have a dark hero)
+  const navClass = `nav-vc ${(!isHome || scrolled) ? 'solid' : ''}`
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'py-4 bg-[var(--warm-white)]/95 backdrop-blur-md border-b border-[var(--border)]' : 'py-6 bg-[var(--warm-white)]'}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex justify-between items-center">
-        <Link href="/" aria-label="Vencer home" className="flex items-center">
+    <header className={navClass}>
+      <div className="container-vc nav-row">
+        <Link href="/" aria-label="Vencer home" className="flex items-center" style={{ gap: 10 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/vencer-logo.svg" alt="Vencer" className="h-8 w-auto" />
+          <img src="/logos/vencer-logo.svg" alt="Vencer" style={{ height: 30, width: 'auto' }} />
         </Link>
-        <ul className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="text-[var(--text-secondary)] text-sm font-medium uppercase tracking-wider hover:text-[var(--teal)] transition-colors">{link.label}</a>
-            </li>
+
+        <nav className="nav-links">
+          {NAV_LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={pathname?.startsWith(l.href) ? 'active' : ''}
+            >
+              {l.label}
+            </Link>
           ))}
-        </ul>
-        <a href="#contact" className="hidden lg:inline-flex btn-secondary text-xs">Start a Project</a>
-        <button className="lg:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
-          <div className="w-6 h-5 flex flex-col justify-between">
-            <span className={`h-0.5 w-full bg-[var(--charcoal)] transition-all ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`h-0.5 w-full bg-[var(--charcoal)] transition-all ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-            <span className={`h-0.5 w-full bg-[var(--charcoal)] transition-all ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </div>
+          <Link href="/contact" className="btn-vc btn-vc-primary nav-cta">
+            Start a Project <span className="arrow">→</span>
+          </Link>
+        </nav>
+
+        <button
+          aria-label="Toggle menu"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden"
+          style={{ display: 'none' }}
+        >
+          ≡
         </button>
       </div>
-      {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[var(--warm-white)] border-b border-[var(--border)] py-6">
-          <ul className="flex flex-col items-center gap-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className="text-[var(--text-secondary)] text-sm font-medium uppercase tracking-wider hover:text-[var(--teal)] transition-colors" onClick={() => setMobileMenuOpen(false)}>{link.label}</a>
-              </li>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: 'var(--warm-white)',
+            borderBottom: '1px solid var(--border)',
+            padding: '24px 0',
+          }}
+        >
+          <nav className="container-vc" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+            {NAV_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} style={{ color: 'var(--text-primary)' }}>
+                {l.label}
+              </Link>
             ))}
-            <li><a href="#contact" className="btn-secondary text-xs" onClick={() => setMobileMenuOpen(false)}>Start a Project</a></li>
-          </ul>
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="btn-vc btn-vc-primary" style={{ alignSelf: 'flex-start' }}>
+              Start a Project <span className="arrow">→</span>
+            </Link>
+          </nav>
         </div>
       )}
-    </nav>
+    </header>
   )
 }

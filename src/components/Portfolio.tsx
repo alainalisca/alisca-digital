@@ -1,41 +1,44 @@
-const projects = [
-  { title: 'Tribe', type: 'Web Application / PWA', description: 'Peer-to-peer fitness app connecting athletes for training sessions. Real-time matching, in-app chat, bilingual support, session management.', tech: ['Next.js 15', 'TypeScript', 'Supabase', 'PWA'], image: '/images/tribe.v3.jpg', url: 'https://tribe-v3.vercel.app' },
-  { title: 'Alisca Law', type: 'Professional Website', description: 'Virtual law firm website for contract and transactional legal services. Clean, authoritative design with clear service positioning.', tech: ['Next.js', 'Responsive', 'SEO Optimized'], image: '/images/aliscalaw.jpg', url: 'https://aliscalaw.com' },
-  { title: 'La Profe Vero', type: 'Business Website', description: 'Spanish tutoring business site with booking integration, pricing tiers, and warm Colombian branding for international students.', tech: ['HTML/CSS/JS', 'Booking Integration', 'Bilingual'], image: '/images/laprofevero.jpg', url: 'https://laprofevero.com' },
-  { title: 'Jay Essentials', type: 'Business Website', description: 'Vending machine business serving NYC and Long Island. Professional multi-page site showcasing services and service areas.', tech: ['Next.js', 'Vercel', 'Custom Domain'], image: '/images/jayessentials.jpg', url: 'https://jayessentials.co' },
-]
+import Link from 'next/link'
+import Reveal from './Reveal'
+import { CASE_STUDIES } from './work-data'
 
-export default function Portfolio() {
+type Props = {
+  variant?: 'home-preview' | 'index'
+}
+
+export default function Portfolio({ variant = 'home-preview' }: Props) {
   return (
-    <section id="portfolio" className="bg-[var(--charcoal)] py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="text-xs uppercase tracking-[0.2em] font-semibold mb-4 block text-[var(--teal-light)]">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl text-white leading-tight font-serif">Selected work</h2>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <a href={project.url} target="_blank" rel="noopener noreferrer" key={project.title} className="group bg-[var(--charcoal-deep)] border border-white/10 overflow-hidden transition-all duration-300 hover:border-[var(--teal)] hover:-translate-y-1 block cursor-pointer">
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+    <section className="work-section section-vc">
+      <div className="container-vc">
+        {variant === 'home-preview' && (
+          <Reveal className="section-head">
+            <span className="eyebrow">Selected Work</span>
+            <h2>Four projects, four different problems.</h2>
+            <p className="lead">
+              A peer-to-peer fitness app. A virtual law firm. A bilingual tutor&apos;s booking site. A multi-borough vending business.{' '}
+              <Link href="/work" style={{ color: 'var(--teal)', textDecoration: 'underline', textUnderlineOffset: 4 }}>
+                See full case studies →
+              </Link>
+            </p>
+          </Reveal>
+        )}
+
+        <Reveal stagger as="div" className="work-grid">
+          {CASE_STUDIES.map((c) => (
+            <Link key={c.slug} className="work-card" href={`/work/${c.slug}`}>
+              <div className="work-img">
+                <span className="work-tag">{c.tag}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.image} alt={`${c.title} case study`} />
               </div>
-              <div className="p-8">
-                <span className="text-xs uppercase tracking-widest text-[var(--teal-light)] mb-2 block">{project.type}</span>
-                <h3 className="font-serif text-2xl text-white mb-3">{project.title}</h3>
-                <p className="text-[var(--stone-light)] mb-6 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-xs uppercase tracking-wider px-3 py-1.5 bg-white/5 text-[var(--stone-light)] border border-white/10">{t}</span>
-                  ))}
-                </div>
+              <div className="work-body">
+                <h3>{c.title}</h3>
+                <p>{variant === 'index' ? c.blurbLong : c.blurb}</p>
+                <span className="work-link">View Case Study <span className="arrow">→</span></span>
               </div>
-            </a>
+            </Link>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

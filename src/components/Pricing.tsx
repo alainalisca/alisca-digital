@@ -1,44 +1,48 @@
-const pricingData = [
-  { service: 'Business Website', description: 'Marketing sites, landing pages, portfolios (5-10 pages)', price: '$500 – $1,500' },
-  { service: 'Web Application', description: 'Custom apps with database, authentication, business logic, PWA features', price: '$4,000 – $10,000+' },
-  { service: 'Hourly Consulting', description: 'Code review, technical advisory, small tasks, troubleshooting', price: '$50/hour' },
-  { service: 'Maintenance Retainer', description: 'Monthly updates, hosting management, priority support', price: '$200 – $500/month' },
+import Reveal from './Reveal'
+
+const TIERS = [
+  {
+    label: 'Tier 01',
+    title: 'Business Website',
+    amt: '$500',
+    unit: '– $1,500',
+    desc: 'Marketing sites, landing pages, portfolios. Custom design, mobile-first, deployed and live on your own domain.',
+  },
+  {
+    label: 'Tier 02 · Most Common',
+    title: 'Web Application',
+    amt: '$2,500',
+    unit: '– $10,000+',
+    desc: 'User accounts, databases, payments, internal tooling. Scoped per project after a paid discovery.',
+    featured: true,
+  },
+  {
+    label: 'Tier 03',
+    title: 'Hourly Consulting',
+    amt: '$50',
+    unit: '/ hour',
+    desc: "Code reviews, audits, second opinions, fixes that don't justify a full engagement.",
+  },
+  {
+    label: 'Tier 04',
+    title: 'Maintenance Retainer',
+    amt: '$200',
+    unit: '– $500 / mo',
+    desc: 'Ongoing updates, hosting management, security patches, priority support windows. Month-to-month, cancel anytime.',
+  },
 ]
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 px-6 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="section-label">Pricing</span>
-          <h2 className="section-title">Transparent rates</h2>
+    <Reveal stagger as="div" className="pricing-grid">
+      {TIERS.map((t) => (
+        <div key={t.title} className={`price-card ${t.featured ? 'featured' : ''}`}>
+          <span className="label">{t.label}</span>
+          <h3>{t.title}</h3>
+          <div className="amt">{t.amt}<span className="unit">{t.unit}</span></div>
+          <p>{t.desc}</p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-[var(--charcoal)] text-white">
-                <th className="px-8 py-5 text-left font-serif text-lg font-semibold tracking-wide">Service</th>
-                <th className="px-8 py-5 text-left font-serif text-lg font-semibold tracking-wide">Description</th>
-                <th className="px-8 py-5 text-right font-serif text-lg font-semibold tracking-wide">Investment</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pricingData.map((item) => (
-                <tr key={item.service} className="border-b border-[var(--border)] transition-colors hover:bg-[var(--cream)]">
-                  <td className="px-8 py-6 font-serif text-xl font-semibold text-[var(--charcoal)]">{item.service}</td>
-                  <td className="px-8 py-6 text-[var(--text-secondary)]">{item.description}</td>
-                  <td className="px-8 py-6 text-right font-serif text-xl font-semibold text-[var(--teal)]">{item.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="mt-8 p-6 bg-[var(--cream)] border-l-4 border-[var(--teal)]">
-          <p className="text-[var(--text-secondary)]">
-            <strong className="text-[var(--text-primary)]">How it works:</strong> Every project starts with a free consultation to understand your needs. Final pricing depends on project scope and complexity — I&apos;ll provide a detailed quote before any work begins. No surprises.
-          </p>
-        </div>
-      </div>
-    </section>
+      ))}
+    </Reveal>
   )
 }
