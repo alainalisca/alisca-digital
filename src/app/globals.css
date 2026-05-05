@@ -81,7 +81,18 @@ p.lead { font-size: 1.18rem; line-height: 1.65; color: var(--text-secondary); }
 .nav-links a:not(.btn-vc)::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--teal); transition: width 0.4s var(--ease-out); }
 .nav-links a:not(.btn-vc):hover, .nav-links a:not(.btn-vc).active { color: var(--charcoal); }
 .nav-links a:not(.btn-vc):hover::after, .nav-links a:not(.btn-vc).active::after { width: 100%; }
-.nav-cta { padding: 11px 20px !important; font-size: 0.88rem !important; }
+.nav-cta {
+  padding: 11px 20px !important;
+  font-size: 0.88rem !important;
+  background: var(--teal) !important;
+  color: var(--warm-white) !important;
+  border-color: var(--teal) !important;
+}
+.nav-cta:hover {
+  background: var(--teal-light) !important;
+  border-color: var(--teal-light) !important;
+  color: var(--charcoal) !important;
+}
 @media (max-width: 920px) { .nav-links a:not(.btn-vc) { display: none; } .nav-cta { padding: 9px 16px !important; font-size: 0.82rem !important; } }
 
 /* ============== Hero ============== */
