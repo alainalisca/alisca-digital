@@ -110,18 +110,24 @@ export default async function Image() {
             }}
           />
 
-          {/* Tagline — short, single line */}
+          {/* Tagline — three services, equal billing */}
           <div
             style={{
               display: 'flex',
+              flexWrap: 'wrap',
               fontSize: 44,
               lineHeight: 1.2,
               color: 'rgba(250,248,243,0.94)',
               fontFamily: cormorant ? 'Cormorant' : 'serif',
               fontWeight: 400,
+              gap: 18,
             }}
           >
-            Custom Websites &amp; Web Applications
+            <span>Custom Websites</span>
+            <span style={{ color: '#2dd4bf' }}>·</span>
+            <span>Web Apps</span>
+            <span style={{ color: '#2dd4bf' }}>·</span>
+            <span>AI Automation</span>
           </div>
         </div>
 
