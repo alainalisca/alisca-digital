@@ -1,9 +1,11 @@
 const ITEMS = [
   'Next.js 14',
+  'AI Automation',
   'Bilingual EN/ES',
   'Work-for-hire IP',
   'Supabase & Postgres',
   'Stripe + Nequi',
+  'Anthropic · OpenAI',
   'Stony Brook · St. John\'s Law',
   'No templates',
   'Custom code, every time',

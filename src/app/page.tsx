@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
+import FeaturedCallout from '@/components/FeaturedCallout'
 import Services from '@/components/Services'
 import Portfolio from '@/components/Portfolio'
 import Philosophy from '@/components/Philosophy'
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Marquee />
+      <FeaturedCallout />
       <Services variant="home-preview" />
       <Portfolio variant="home-preview" />
       <Philosophy showAboutLink />

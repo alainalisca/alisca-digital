@@ -82,6 +82,7 @@ export default function Contact({ variant = 'home-teaser' }: Props) {
                   <div className="field">
                     <label htmlFor="c-tier">What kind of project?</label>
                     <select id="c-tier" name="projectType" defaultValue="not-sure">
+                      <option value="ai-automation">AI Automation ($75/hr · scoped)</option>
                       <option value="business-website">Business Website ($500–$1,500)</option>
                       <option value="web-app">Web Application ($2,500–$10,000+)</option>
                       <option value="pwa">Progressive Web App</option>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PageHeader from '@/components/PageHeader'
+import FeaturedCallout from '@/components/FeaturedCallout'
 import Services, { SERVICES } from '@/components/Services'
 import Skills from '@/components/Skills'
 import Reveal from '@/components/Reveal'
@@ -119,8 +120,11 @@ export default function ServicesPage() {
         crumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
       />
 
+      {/* Featured: AI Automation */}
+      <FeaturedCallout />
+
       {/* Quick service grid */}
-      <section className="services-section" style={{ paddingTop: 80, paddingBottom: 40 }}>
+      <section className="services-section" style={{ paddingTop: 50, paddingBottom: 40 }}>
         <div className="container-vc">
           <Services variant="jump-grid" />
         </div>
@@ -159,6 +163,58 @@ export default function ServicesPage() {
               </Reveal>
             )
           })}
+        </div>
+      </section>
+
+      {/* AI Automation deep section */}
+      <section style={{ padding: '40px 0 90px' }}>
+        <div className="container-vc">
+          <Reveal as="article" className="ai-deep-row">
+            <div className="ai-deep-img" id="ai-automation" aria-hidden="true"></div>
+            <div className="svc-detail-body">
+              <span className="eyebrow">07 / AI Automation · NEW</span>
+              <h2 style={{ marginTop: 8 }}>AI features and agents, embedded in custom apps you own.</h2>
+              <p>
+                AI work splits into two kinds of vendors: specialists who only do AI but can&apos;t ship the surrounding application, and full-stack developers who can ship the application but treat the AI layer as someone else&apos;s problem. I&apos;m the second kind, with the AI layer included — useful when you want one person to build the whole thing and the AI is part of it, not a separate vendor relationship.
+              </p>
+              <p>
+                Every project is custom-coded against the model APIs (Anthropic, OpenAI, etc.) — not built on a no-code platform you&apos;ll pay rent on forever. Your prompts, your data flow, your agent logic, all running on infrastructure you own.
+              </p>
+
+              <div className="ai-categories">
+                <div className="ai-category">
+                  <h4>AI features in web apps</h4>
+                  <p>Chat assistants, content generators, summarization, semantic search inside your custom app.</p>
+                </div>
+                <div className="ai-category">
+                  <h4>Workflow automation</h4>
+                  <p>Auto-classify inbound leads, draft replies, transcribe and summarize calls, process documents.</p>
+                </div>
+                <div className="ai-category">
+                  <h4>Legal-tech automation</h4>
+                  <p>Contract review, NDA generation, intake forms with structured extraction. Built by a JD.</p>
+                </div>
+                <div className="ai-category">
+                  <h4>Custom agents</h4>
+                  <p>Multi-step agents using Claude / OpenAI SDKs, wired to your business logic and data.</p>
+                </div>
+              </div>
+
+              <ul className="svc-includes">
+                <li>Discovery call to scope the use case (free first 30 min)</li>
+                <li>Custom prompts, evals, and guardrails written for your data — not generic boilerplate</li>
+                <li>Server-side API integration so prompts and keys aren&apos;t exposed in client code</li>
+                <li>Cost monitoring + rate limiting baked in (so an unexpected spike doesn&apos;t blow your bill)</li>
+                <li>Honest framing: I&apos;ll tell you when an AI tool is the wrong answer for your use case</li>
+              </ul>
+
+              <div className="svc-meta-row">
+                <div className="meta"><span className="key">Hourly</span><span className="val">$75 / hour</span></div>
+                <div className="meta"><span className="key">Project work</span><span className="val">Scoped after a paid discovery</span></div>
+                <div className="meta"><span className="key">Best for</span><span className="val">Solo professionals, small ops teams, legal practices</span></div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
