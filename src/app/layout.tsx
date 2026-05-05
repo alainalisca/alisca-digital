@@ -17,11 +17,20 @@ export const metadata: Metadata = {
     siteName: 'Vencer',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Vencer — Custom Websites & Web Applications',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vencer — Custom Websites & Web Applications',
     description: 'Custom-coded sites and applications. No templates. No page builders. You own everything.',
+    images: ['/opengraph-image'],
   },
   icons: {
     icon: [
